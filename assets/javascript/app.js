@@ -39,7 +39,11 @@ $(document).on("click", "#start-button", function() {
 
 $(document).on("click", ".answer-button", function(e) {
     quiz.clicked(e);
-})
+});
+
+$(document).on("click", "#redo", function() {
+    quiz.reset();
+  });
 
 var timer;
 var quiz = {
@@ -70,21 +74,105 @@ var quiz = {
     },
 
     nextQuestion: function() {
+        //set the timer
         quiz.counter = setTimer;
+        //force the timer to show on the page
         $("#counter-number").text(quiz.counter);
+        //go to the next question
         quiz.currentQuestion++;
+        //load the next queston
         quiz.loadQuestion();
     },
 
 
+    timesUp: function() {
+        //clear timer
+        clearInterval(timer);
+        //update timer on page
+        $("#counter-number").text(quiz.counter);
+        //times up message
+        qArea.html("<h3>Times Up!</h3>");
+        //show the correct message
+        qArea.append("<h3>The Correct Answer was:" + questions[this.currentQuestion].correctAnswer);
+    },
+
+    answerClicked: function(e) {
+        //clear timer
+        clearInterval(timer);
+        //define if right or wrong question was clicked
+        if ($(e.target).attr("data-name") === questions[this.currentQuestion].correctAnswer) {
+            this.answeredCorrectly();//if answer was correct run correct function
+        }
+        else {
+            this.answeredIncorrectly();//if answer was incorrect run incorrect function
+        }
+    },
+
+    answeredCorrectly: function() {
+        //add to correct score
+        quiz.correctA++;
+        //clear timer
+        clearInterval(timer);
+        //let user know answer was correct
+        qArea.html("<h3>Correct!</h3>");
+
+        //check if all questions have been asked
+        if (quiz.currentQuestion === questions.legnth -1) {
+            setTimeout(quiz.results, 3 * 1000);
+        }
+        else {
+            setTimeout(quiz.nextQuestion, 3 * 1000);
+        }
+
+    }, 
+
+    answeredIncorrectly: function() {
+        //add to correct score
+        quiz.incorrectA++;
+        //clear timer
+        clearInterval(timer);
+        //let user know answer was incorrect
+        qArea.html("<h3>Sorry!</h3>");
+        //let user know the right answer
+        qArea.append("<h3>The correct answer was: " + questions[quiz.currentQuestion].correctAnswer + "</h3>");
 
 
+        //check if all questions have been asked
+        if (quiz.currentQuestion === questions.legnth -1) {
+            setTimeout(quiz.results, 3 * 1000);
+        }
+        else {
+            setTimeout(quiz.nextQuestion, 3 * 1000);
+        }
 
+    }, 
     
+    finalResults: function () {
+        //clear timer
+        clearInterval(timer);
+        //show message for results
+        qArea.html("<h2>Let's see how you did!</h2>");
+        //clear counter
+        $("#counter-number").text("");
+        //show the number of correct answers
+        qArea.append("<h3>Questions you got right: " + quiz.correctA + "</h3>");
+        //show the number of correct answers
+        qArea.append("<h3>Questions you got wrong: " + quiz.incorrectA + "</h3>");
+        //show the number of unanswered questions
+        qArea.append("<h3>Did you fall asleep? Unanswered: " + (questions.length - (quiz.correctA + quiz.incorrectA)) + "</h3>");
+        //show button to start over
+        qArea.append("<br><button id = 'redo'>Want a redo?</button>");
 
 
+    },
 
-
+    reset: function() {
+        this.currentQuestion = 0,
+        this.counter = setTimer,
+        this.correctA = 0,
+        this. incorrectA = 0,
+        this.loadQuestion();
+    }
 };
 
 
