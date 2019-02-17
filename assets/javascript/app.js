@@ -9,24 +9,28 @@ var questions = [{
     correctAnswer : '2) Emilio Estevez', 
 },
 
-{ question : 'While the show Psych was set in Santa Barbara, CA, where was it actually filmed?',
+{
+    question : 'While the show Psych was set in Santa Barbara, CA, where was it actually filmed?',
     answers : ['1) Vancouver, BC', '2) Santa Monica, CA', '3) Atlanta, GA',  '4) Toronto, ON'],
     correctAnswer : '1) Vancouver, BC', 
 },
 
-{ question : 'In the show Psych there is a character named Dobson who is always referred to but never seen. In the final episode which actor is revealed as Dobson? Hint: the actor is mentioned multiple times throughout the series.',
+{
+    question : 'In the show Psych there is a character named Dobson who is always referred to but never seen. In the final episode which actor is revealed as Dobson? Hint: the actor is mentioned multiple times throughout the series.',
     answers : ['1) Ed Lover', '2) Billy Zane', '3) Val Kilmer', '4) Deon Richmond'],
     correctAnswer : '3) Val Kilmer', 
 },
 
 
-{ question : 'What fruit is shown in (almost) every single episode throughout the entire series in some form?',
+{
+    question : 'What fruit is shown in (almost) every single episode throughout the entire series in some form?',
     answers : ['1) Lime', '2) Apple', '3) Orange', '4) Pineapple'],
     correctAnswer : '4) Pineapple', 
 },
 
 
-{ question : 'Gus drives a blue Toyota Echo affectionately known as “The Blueberry”. What is the name of the rental car (also a Toyota Echo) that Gus is forced to drive after the Blueberry is ripped in half in an attempt to bring down a balcony in the episode Santabarbaratown 2?',
+{
+    question : 'Gus drives a blue Toyota Echo affectionately known as “The Blueberry”. What is the name of the rental car (also a Toyota Echo) that Gus is forced to drive after the Blueberry is ripped in half in an attempt to bring down a balcony in the episode Santabarbaratown 2?',
     answers : ['1) The Strawberry', '2) The Gooseberry', '3) The Cranberry', '4) The Blackberry'],
     correctAnswer : '3) The Cranberry', 
 }];
@@ -48,13 +52,13 @@ $(document).on("click", "#redo", function() {
 
 var timer;
 var quiz = {
+    
 
     questions: questions,
     currentQuestion: 0,
     counter: setTimer,
     correctA: 0,
     incorrectA: 0,
-    unanswered: 0,
 
     countdown: function() {
         quiz.counter--;
@@ -131,7 +135,7 @@ var quiz = {
 
         //check if all questions have been asked
         if (quiz.currentQuestion === questions.legnth -1) {
-            setTimeout(quiz.results, 3 * 1000);
+            setTimeout(quiz.finalResults, 3 * 1000);
         }
         else {
             setTimeout(quiz.nextQuestion, 3 * 1000);
@@ -152,7 +156,7 @@ var quiz = {
 
         //check if all questions have been asked
         if (quiz.currentQuestion === questions.legnth -1) {
-            setTimeout(quiz.results, 3 * 1000);
+            setTimeout(quiz.finalResults, 3 * 1000);
         }
         else {
             setTimeout(quiz.nextQuestion, 3 * 1000);
@@ -167,7 +171,7 @@ var quiz = {
         //show message for results
         qArea.html("<h2>Let's see how you did!</h2>");
         //clear counter
-        $("#counter-number").text("");
+        $("#counter-number").text(quiz.counter);
         //show the number of correct answers
         qArea.append("<h3>Questions you got right: " + quiz.correctA + "</h3>");
         //show the number of correct answers
@@ -184,7 +188,7 @@ var quiz = {
         this.currentQuestion = 0,
         this.counter = setTimer,
         this.correctA = 0,
-        this. incorrectA = 0,
+        this.incorrectA = 0,
         this.loadQuestion();
     }
 };
