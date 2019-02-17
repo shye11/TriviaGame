@@ -1,0 +1,44 @@
+Body {
+    margin: 0px;
+    padding: 0px;
+    font-family: American Typewriter, serif;
+    color: black;
+    font-size: 18px; 
+}
+
+.jumbotron {
+    padding: 40px;
+    margin-bottom: 5px;
+    background-color: #e9ecef;
+    display: inline-block;
+    width: 50%;
+    height: 500px;
+    z-index: 2;
+    margin: 14%;
+}
+
+.bg {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+h1 {
+    text-align: center;
+    font-family: American Typewriter, serif;
+    font-weight: bold;
+    font-size: 48px;
+    color: #8fc154;
+}
+
+.btn {
+    background: #8fc154;
+    color: white;
+}
+
+.button {
+    background: #8fc154;
+    color: white;
+}
