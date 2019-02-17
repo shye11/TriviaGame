@@ -1,5 +1,5 @@
 var qArea = $("#question-area");
-var setTimer = 60;
+var setTimer = 10;
 
 
 
@@ -34,11 +34,12 @@ var questions = [{
 //click events
 $(document).on("click", "#start-button", function() {
     $("#sub-wrapper").prepend("<h2>Time Remaining: <span id='counter-number'>60</span> Seconds</h2>");
+    $("#start-button").hide();
     quiz.loadQuestion();
   });
 
-$(document).on("click", ".answer-button", function(e) {
-    quiz.clicked(e);
+$(document).on("click", "#answer-button", function(e) {
+    quiz.answerClicked(e);
 });
 
 $(document).on("click", "#redo", function() {
@@ -53,13 +54,14 @@ var quiz = {
     counter: setTimer,
     correctA: 0,
     incorrectA: 0,
+    unanswered: 0,
 
     countdown: function() {
         quiz.counter--;
         $("#counter-number").text(quiz.counter);
         if (quiz.counter === 0) {
           console.log("TIME UP");
-          quiz.timeUp();
+          quiz.timesUp();
         }
       },
 
@@ -69,7 +71,8 @@ var quiz = {
         qArea.html("<h2>" + questions[this.currentQuestion].question + "</h2>"); //to load the first question
 
         for (var i = 0; i < questions[this.currentQuestion].answers.length; i++) {
-            qArea.append("<button class='answer-button' id='button' data-name='" + questions[this.currentQuestion].answers[i] + "'>" + questions[this.currentQuestion].answers[i] + "</button>");
+            qArea.append("<button class='btn btn-lg btn-block' href='#' role='button' id='answer-button' data-name='" + questions[this.currentQuestion].answers[i]
+            + "'>" + questions[this.currentQuestion].answers[i] + "</button>");
         }
     },
 
@@ -94,6 +97,13 @@ var quiz = {
         qArea.html("<h3>Times Up!</h3>");
         //show the correct message
         qArea.append("<h3>The Correct Answer was:" + questions[this.currentQuestion].correctAnswer);
+
+        if (quiz.currentQuestion === questions.length - 1) {
+            setTimeout(quiz.results, 3 * 1000);
+          }
+          else {
+            setTimeout(quiz.nextQuestion, 3 * 1000);
+          }
     },
 
     answerClicked: function(e) {
@@ -107,24 +117,6 @@ var quiz = {
             this.answeredIncorrectly();//if answer was incorrect run incorrect function
         }
     },
-
-    answeredCorrectly: function() {
-        //add to correct score
-        quiz.correctA++;
-        //clear timer
-        clearInterval(timer);
-        //let user know answer was correct
-        qArea.html("<h3>Correct!</h3>");
-
-        //check if all questions have been asked
-        if (quiz.currentQuestion === questions.legnth -1) {
-            setTimeout(quiz.results, 3 * 1000);
-        }
-        else {
-            setTimeout(quiz.nextQuestion, 3 * 1000);
-        }
-
-    }, 
 
     answeredIncorrectly: function() {
         //add to correct score
@@ -146,6 +138,28 @@ var quiz = {
         }
 
     }, 
+
+
+    answeredCorrectly: function() {
+
+        //clear timer
+        clearInterval(timer);
+        //add to correct score
+        quiz.correctA++;
+
+        //let user know answer was correct
+        qArea.html("<h3>Correct!</h3>");
+
+        //check if all questions have been asked
+        if (quiz.currentQuestion === questions.legnth -1) {
+            setTimeout(quiz.results, 3 * 1000);
+        }
+        else {
+            setTimeout(quiz.nextQuestion, 3 * 1000);
+        }
+
+    }, 
+
     
     finalResults: function () {
         //clear timer

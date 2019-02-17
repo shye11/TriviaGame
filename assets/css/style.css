@@ -3,7 +3,8 @@ Body {
     padding: 0px;
     font-family: American Typewriter, serif;
     color: black;
-    font-size: 18px; 
+    font-size: 18px;
+    text-align: center;
 }
 
 .jumbotron {
