@@ -7,18 +7,22 @@ var questions = [{
     question : 'Which member of “The Breakfast Club” was the only one who did not have an appearance on the USA show Psych?',
     answers : ['1) Judd Nelson', '2) Emilio Estevez', '3) Molly Ringwald', '4) Ally Sheedy'],
     correctAnswer : '2) Emilio Estevez', 
+    image :  "assets/images/emilio.gif"
+
 },
 
 {
     question : 'While the show Psych was set in Santa Barbara, CA, where was it actually filmed?',
     answers : ['1) Vancouver, BC', '2) Santa Monica, CA', '3) Atlanta, GA',  '4) Toronto, ON'],
-    correctAnswer : '1) Vancouver, BC', 
+    correctAnswer : '1) Vancouver, BC',
+    image :  "assets/images/vancouver.gif"
 },
 
 {
     question : 'In the show Psych there is a character named Dobson who is always referred to but never seen. In the final episode which actor is revealed as Dobson? Hint: the actor is mentioned multiple times throughout the series.',
     answers : ['1) Ed Lover', '2) Billy Zane', '3) Val Kilmer', '4) Deon Richmond'],
     correctAnswer : '3) Val Kilmer', 
+    image :  "assets/images/psych_val_kilmer.jpg"
 },
 
 
@@ -26,13 +30,15 @@ var questions = [{
     question : 'What fruit is shown in (almost) every single episode throughout the entire series in some form?',
     answers : ['1) Lime', '2) Apple', '3) Orange', '4) Pineapple'],
     correctAnswer : '4) Pineapple', 
+    image :  "assets/images/pineapple.gif"
 },
 
 
 {
-    question : 'Gus drives a blue Toyota Echo affectionately known as “The Blueberry”. What is the name of the rental car (also a Toyota Echo) that Gus is forced to drive after the Blueberry is ripped in half in an attempt to bring down a balcony in the episode Santabarbaratown 2?',
+    question : 'Gus drives a blue Toyota Echo affectionately known as “The Blueberry”. What is the name of the rental car (also a Toyota Echo) that Gus is forced to drive after the Blueberry suffers a mishap? Hint: Shawn blows up The Cranberry by accident',
     answers : ['1) The Strawberry', '2) The Gooseberry', '3) The Cranberry', '4) The Blackberry'],
     correctAnswer : '3) The Cranberry', 
+    image :  "assets/images/thecranberry.gif"
 }];
 
 //click events
@@ -103,7 +109,7 @@ var quiz = {
         qArea.append("<h3>The Correct Answer was:" + questions[this.currentQuestion].correctAnswer);
 
         if (quiz.currentQuestion === questions.length - 1) {
-            setTimeout(quiz.results, 3 * 1000);
+            setTimeout(quiz.finalResults, 3 * 1000);
           }
           else {
             setTimeout(quiz.nextQuestion, 3 * 1000);
@@ -131,6 +137,7 @@ var quiz = {
         qArea.html("<h3>Sorry!</h3>");
         //let user know the right answer
         qArea.append("<h3>The correct answer was: " + questions[quiz.currentQuestion].correctAnswer + "</h3>");
+        qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' />");
 
 
         //check if all questions have been asked
@@ -153,6 +160,7 @@ var quiz = {
 
         //let user know answer was correct
         qArea.html("<h3>Correct!</h3>");
+        qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' />");
 
         //check if all questions have been asked
         if (quiz.currentQuestion === questions.legnth -1) {

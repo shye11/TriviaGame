@@ -13,7 +13,7 @@ Body {
     background-color: #e9ecef;
     display: inline-block;
     width: 50%;
-    height: 500px;
+    line-height: 1.5;
     z-index: 2;
     margin: 14%;
 }
