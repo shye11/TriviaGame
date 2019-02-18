@@ -78,7 +78,7 @@ var quiz = {
     loadQuestion: function() {
 
         timer = setInterval(quiz.countdown, 1000); //set timer for current question
-        qArea.html("<h2>" + questions[this.currentQuestion].question + "</h2>"); //to load the first question
+        qArea.html("<h3>" + questions[this.currentQuestion].question + "</h3>"); //to load the first question
 
         for (var i = 0; i < questions[this.currentQuestion].answers.length; i++) {
             qArea.append("<button class='btn btn-lg btn-block' href='#' role='button' id='answer-button' data-name='" + questions[this.currentQuestion].answers[i]
@@ -109,7 +109,7 @@ var quiz = {
         qArea.append("<h3>The Correct Answer was:" + questions[this.currentQuestion].correctAnswer);
 
         if (quiz.currentQuestion === questions.length - 1) {
-            setTimeout(quiz.finalResults, 3 * 1000);
+            quiz.finalResults();
           }
           else {
             setTimeout(quiz.nextQuestion, 3 * 1000);
@@ -137,12 +137,12 @@ var quiz = {
         qArea.html("<h3>Sorry!</h3>");
         //let user know the right answer
         qArea.append("<h3>The correct answer was: " + questions[quiz.currentQuestion].correctAnswer + "</h3>");
-        qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' />");
+        qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' class = 'abg' />");
 
 
         //check if all questions have been asked
         if (quiz.currentQuestion === questions.legnth -1) {
-            setTimeout(quiz.finalResults, 3 * 1000);
+            quiz.finalResults();
         }
         else {
             setTimeout(quiz.nextQuestion, 3 * 1000);
@@ -160,11 +160,11 @@ var quiz = {
 
         //let user know answer was correct
         qArea.html("<h3>Correct!</h3>");
-        qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' />");
+        qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' class = 'abg' />");
 
         //check if all questions have been asked
         if (quiz.currentQuestion === questions.legnth -1) {
-            setTimeout(quiz.finalResults, 3 * 1000);
+            quiz.finalResults();
         }
         else {
             setTimeout(quiz.nextQuestion, 3 * 1000);
@@ -177,17 +177,17 @@ var quiz = {
         //clear timer
         clearInterval(timer);
         //show message for results
-        qArea.html("<h2>Let's see how you did!</h2>");
+        qArea.html("<h3>Let's see how you did!</h3>");
         //clear counter
         $("#counter-number").text(quiz.counter);
         //show the number of correct answers
-        qArea.append("<h3>Questions you got right: " + quiz.correctA + "</h3>");
+        qArea.append("<h4>Questions you got right: " + quiz.correctA + "</h4>");
         //show the number of correct answers
-        qArea.append("<h3>Questions you got wrong: " + quiz.incorrectA + "</h3>");
+        qArea.append("<h4>Questions you got wrong: " + quiz.incorrectA + "</h4>");
         //show the number of unanswered questions
-        qArea.append("<h3>Did you fall asleep? Unanswered: " + (questions.length - (quiz.correctA + quiz.incorrectA)) + "</h3>");
+        qArea.append("<h4>Did you fall asleep? Unanswered: " + (questions.length - (quiz.correctA + quiz.incorrectA)) + "</h4>");
         //show button to start over
-        qArea.append("<br><button id = 'redo'>Want a redo?</button>");
+        qArea.append("<br><button id = 'redo' class = 'btn'>Want a redo?</button>");
 
 
     },

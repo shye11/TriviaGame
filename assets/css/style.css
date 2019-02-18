@@ -15,7 +15,7 @@ Body {
     width: 50%;
     line-height: 1.5;
     z-index: 2;
-    margin: 14%;
+    margin: 5% 14%;
 }
 
 .bg {
@@ -42,4 +42,8 @@ h1 {
 .button {
     background: #8fc154;
     color: white;
+}
+
+.abg {
+    width: 100%;
 }
