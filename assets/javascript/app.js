@@ -43,7 +43,7 @@ var questions = [{
 
 //click events
 $(document).on("click", "#start-button", function() {
-    $("#sub-wrapper").prepend("<h2>Time Remaining: <span id='counter-number'>60</span> Seconds</h2>");
+    $("#sub-wrapper").prepend("<h2>Time Remaining: <span id='counter-number'>30</span> Seconds</h2>");
     $("#start-button").hide();
     quiz.loadQuestion();
   });
