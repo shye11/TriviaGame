@@ -47,3 +47,9 @@ h1 {
 .abg {
     width: 100%;
 }
+
+#redo {
+    background: #8fc154;
+    color: white;
+    margin-top: 10px;
+}

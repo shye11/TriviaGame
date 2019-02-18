@@ -107,6 +107,7 @@ var quiz = {
         qArea.html("<h3>Times Up!</h3>");
         //show the correct message
         qArea.append("<h3>The Correct Answer was:" + questions[this.currentQuestion].correctAnswer);
+        qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' class = 'abg' />");
 
         if (quiz.currentQuestion === questions.length - 1) {
             quiz.finalResults();
@@ -186,6 +187,7 @@ var quiz = {
         qArea.append("<h4>Questions you got wrong: " + quiz.incorrectA + "</h4>");
         //show the number of unanswered questions
         qArea.append("<h4>Did you fall asleep? Unanswered: " + (questions.length - (quiz.correctA + quiz.incorrectA)) + "</h4>");
+        qArea.append("<img src='assets/images/final.gif' class = 'abg' />");
         //show button to start over
         qArea.append("<br><button id = 'redo' class = 'btn'>Want a redo?</button>");
 
