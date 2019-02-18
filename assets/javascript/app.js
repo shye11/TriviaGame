@@ -1,5 +1,5 @@
 var qArea = $("#question-area");
-var setTimer = 10;
+var setTimer = 30;
 
 
 
