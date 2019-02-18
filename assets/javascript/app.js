@@ -142,7 +142,7 @@ var quiz = {
 
 
         //check if all questions have been asked
-        if (quiz.currentQuestion === questions.legnth -1) {
+        if (quiz.currentQuestion === questions.legnth - 1) {
             quiz.finalResults();
         }
         else {
@@ -154,17 +154,17 @@ var quiz = {
 
     answeredCorrectly: function() {
 
-        //clear timer
-        clearInterval(timer);
         //add to correct score
         quiz.correctA++;
+        //clear timer
+        clearInterval(timer);
 
         //let user know answer was correct
         qArea.html("<h3>Correct!</h3>");
         qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' class = 'abg' />");
 
         //check if all questions have been asked
-        if (quiz.currentQuestion === questions.legnth -1) {
+        if (quiz.currentQuestion === questions.legnth - 1) {
             quiz.finalResults();
         }
         else {
