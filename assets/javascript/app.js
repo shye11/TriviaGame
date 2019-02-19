@@ -142,7 +142,7 @@ var quiz = {
 
 
         //check if all questions have been asked
-        if (quiz.currentQuestion === questions.legnth - 1) {
+        if (quiz.currentQuestion === questions.length - 1) {
             quiz.finalResults();
         }
         else {
@@ -164,7 +164,7 @@ var quiz = {
         qArea.append("<img src='" + questions[quiz.currentQuestion].image + "' class = 'abg' />");
 
         //check if all questions have been asked
-        if (quiz.currentQuestion === questions.legnth - 1) {
+        if (quiz.currentQuestion === questions.length - 1) {
             quiz.finalResults();
         }
         else {
